@@ -1,0 +1,14 @@
+{ 
+    "VEMI":{
+        "Background": "rgb(0, 0, 65)",
+        "Alt-Background": "rgb(0, 0, 54)",
+        "Highlight": "rgb(255, 213, 6)",
+        "Text":"rgb(230, 230, 230)"
+    },
+    "Dark":{
+        "Background": "rgb(0, 0, 65)",
+        "Alt-Background": "rgb(0, 0, 54)",
+        "Highlight": "rgb(255, 213, 6)",
+        "Text":"rgb(230, 230, 230)"
+    }
+}

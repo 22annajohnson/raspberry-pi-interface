@@ -1,0 +1,129 @@
+* {
+    background-color: rgb(0, 0, 65);
+    color: rgb(230, 230, 230);
+    font: 12pt "Centiry Gothic";
+}
+
+/* QPushButton {
+    color: rgb(230, 230, 230);
+    background: rgb(0, 0, 65) !important;
+    font: 12pt "Century Gothic";
+    border: 2px ridge;
+    border-radius: 5px;
+    border-color: rgb(0, 0, 54) rgb(0, 0, 54) rgb(255, 213, 6) rgb(0, 0, 54);
+    padding: 5px;
+}
+
+QPushButton:hover {
+    color: rgb(0, 0, 54);
+    background-color: rgb(230, 230, 230) !important;
+    border: 2px ridge;
+    border-radius: 5px;
+    border-color:  rgb(230, 230, 230) rgb(230, 230, 230) rgb(255, 213, 6)rgb(230, 230, 230);
+
+} */
+
+/* Utility Classes */
+.bg-primary {
+    background-color: rgb(0, 0, 65);
+}
+.bg-secondary {
+    background-color: rgb(0, 0, 54);
+}
+.clr-primary {
+    color: rgb(230, 230,230);
+}
+.clr-accent {
+    color: rgb(255, 213, 6);
+}
+
+.fs-heading {
+    font: 25pt "Bebas Neue";
+}
+.fs-primary {
+    font: 14pt "Century Gothic";
+}
+.fs-secondary {
+    font: 12pt "Century Gothic";
+}
+
+/* Custom Rules */
+QLabel {
+    color: rgb(230, 230, 230);
+    font: 14pt "Century Gothic";
+    qproperty-alignment: AlignHCenter;
+}
+
+QTableWidget {
+    color: rgb(230, 230, 230);
+    background-color: rgb(0, 0, 65);
+    alternate-background-color: rgb(0, 0, 54);
+    border-color: rgb(230, 230, 230);
+    border-bottom: 2px;
+    font: 12pt "Century Gothic";
+} 
+
+QTableWidget::section {
+    color: rgb(0, 0, 54);
+    background-color: rgb(255, 213, 6);
+}
+
+QLineEdit {
+    color: rgb(230, 230, 230);
+    font: 14pt "Century Gothic";
+}
+
+/* QToolBox {
+    color: rgb(230, 230, 230);
+    font: 12pt "Century Gothic"
+} */
+
+.button {
+    color: rgb(230, 230, 230);
+    background: rgb(0, 0, 65) !important;
+    font: 12pt "Century Gothic";
+    border: 2px ridge;
+    border-radius: 5px;
+    border-color: rgb(0, 0, 54) rgb(0, 0, 54) rgb(255, 213, 6) rgb(0, 0, 54);
+    padding: 5px;
+}
+.button:hover {
+    color: rgb(0, 0, 54);
+    background-color: rgb(230, 230, 230) !important;
+    border: 2px ridge;
+    border-radius: 5px;
+    border-color:  rgb(230, 230, 230) rgb(230, 230, 230) rgb(255, 213, 6)rgb(230, 230, 230);
+}
+
+.nav-button {
+    color: rgb(230, 230, 230);
+    background-color: rgb(0, 0, 54);
+    font: 12pt "Century Gothic";
+    border: 0px solid;
+    border-radius: 10px;
+    height:75px;
+    padding: 0px;
+    margin: 0px;
+}
+.nav-button:hover {
+    color: rgb(0, 0, 65);
+    background-color: rgb(230, 230, 230);
+}
+
+.nav-button-self {
+    color: rgb(230, 230, 230);
+    background-color: rgb(0, 0, 65);
+    border-radius: 0px 10px 10px 0px;
+    border-width: 0px;
+    height: 75px;
+}
+.nav-button-self:hover {
+    color: rgb(230, 230, 230);
+    background-color: rgb(0, 0, 65);
+    border-radius: 0px 10px 10px 0px;
+}
+
+.button-icon {
+    border: none;
+}
+

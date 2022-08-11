@@ -1,0 +1,3 @@
+file 'C:/Users/22ann/Documents/College/SPRING2022/VEMI/Projects/PiGUI/images/test2.jpeg'
+duration 3
+file 'C:/Users/22ann/Documents/College/SPRING2022/VEMI/Projects/PiGUI/images/test2.jpeg'

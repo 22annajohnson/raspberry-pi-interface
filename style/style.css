@@ -1,0 +1,95 @@
+
+:root {
+    --clr-accent-400: rgb(255, 213, 6);
+    
+    --clr-primary-400: rgb(230, 230, 230);
+
+    --clr-neutral-600: rgb(0, 0, 65);
+    --clr-neutral-900: rgb(0, 0, 54);
+
+    --ff-heading-500: "Bebas Neue";
+    --ff-primary-500: "Century Gothic";
+
+    --fs-heading-600: 25pt;
+    --fs-primary-500: 14pt;
+    --fs-primary-400: 12pt;
+}
+
+[data-theme="dark"] {
+    --clr-accent-400: rgb(255, 213, 6);
+    
+    --clr-primary-400: rgb(230, 230, 230);
+
+    --clr-neutral-600: rgb(0, 0, 65);
+    --clr-neutral-900: rgb(0, 0, 54);
+}
+
+[data-theme="light"] {
+    --clr-accent-400: rgb(255, 213, 6);
+    
+    --clr-primary-400: rgb(230, 230, 230);
+
+    --clr-neutral-600: rgb(0, 0, 65);
+    --clr-neutral-900: rgb(0, 0, 54);
+}
+
+QPushButton {
+    color: var(--clr-primary-400);
+    background-color: var(--clr-neutral-600);
+    font: var(--fs-primary-400) var(--ff-primary-500);
+    border: 2px ridge;
+    border-radius: 5px;
+    border-color: var(--clr-neutral-900) var(--clr-neutral-900) var(--clr-accent-400) var(--clr-neutral-900);
+    padding: 5px;
+}
+
+QPushButton:hover {
+    color: var(--clr-neutral-900);
+    background-color: var(--clr-accent-400);
+    border-color: var(--clr-accent-400) var(--clr-accent-400) var(--clr-primary-400) var(--clr-accent-400);
+}
+
+QLabel {
+    color: var(--clr-primary-400);
+    font: var(--fs-primary-500) var(--ff-primary-500);
+    text-align: center;
+}
+
+QTableWidget {
+    color: var(--clr-primary-400);
+    background-color: var(--clr-neutral-600);
+    border-color: var(--clr-primary-400);
+    border-bottom: 2px;
+    font: var(--fs-primary-500) var(--ff-primary-500);
+} 
+
+QTableWidget::section {
+    color: var(--clr-neutral-900);
+    background-color: var(--clr-accent-400);
+}
+
+QLineEdit {
+    color: var(--clr-primary-400);
+    font: var(--fs-primary-500) var(--ff-primary-500)
+}
+
+
+.heading {
+    font: var(--fs-heading-600) var(--ff-heading-500);
+}
+
+.navButton {
+    color: var(--clr-primary-400);
+    background-color: var(--clr-neutral-900);
+    font: var(--fs-primary-400) var(--ff-primary-500);
+    border: 0px solid;
+    border-radius: 1px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.navButton:hover {
+    color: var(--clr-neutral-600);
+    background-color: var(--clr-primary-400);
+}
+
