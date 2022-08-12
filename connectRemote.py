@@ -40,11 +40,12 @@ def downloadFiles(ip, remote):
     print(f"Files Extracted from {ip}: {extracted}")
 
 def uploadFile(ip, local, remote):
-    print(ip, "\n", local, "\n", remote)
+    # print(ip, "\n", local, "\n", remote)
     sftp = connect(ip)
     try:
+        file = local.split("\\")[-1]
+
         sftp.put(local, remote)
-        file = local.split("/")[-1]
         print(f"\n{file} successfully uploaded to {remote}")
     except:
         print("Error")
@@ -57,11 +58,15 @@ def fileList(ip, remote):
     
     return files
 
+def slideShow(ip):
+    sftp = connect(ip)
+
+
 
 
 # print(fileList("10.10.0.208", ["/home/pi/ScreenPlayer/ManualUpload"]))
 
-# uploadFile("10.10.0.200", "C:/Users/22ann/Documents/College/SPRING2022/VEMI/Projects/PiGUI/photos.txt", "/home/pi/ScreenPlayer/AutoUpload/test.txt")
+# uploadFile("10.10.0.200", "C:/Users/22ann/Documents/RPi_Interface/new.mp4", "/home/pi/ScreenPlayer/AutoUpload/new.mp4")
 # images = []
 # for image in os.listdir(current+"\images"):
 #     images.append(current+"\images\\"+image)

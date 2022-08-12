@@ -5,7 +5,7 @@
     Description: GUI to ssh into 6 Raspberry Pis, uploads user defined videos, and 
     runs command to play selected videos
 """
-
+ 
 import sys
 import os
 from PyQt5 import QtCore, QtWidgets, QtGui
@@ -150,7 +150,7 @@ class MainWindow(QMainWindow):
         with open("./resources/pi.JSON") as f:
             pi = json.load(f)
         keys = pi.keys()
-
+        
         # Remote paths to screen player directories
         screenPlayer = "/home/pi/ScreenPlayer"
         manual = f"{screenPlayer}/ManualUpload"
@@ -164,11 +164,22 @@ class MainWindow(QMainWindow):
             files = ct.fileList(ip, [manual, auto, archive])
             filesDictionary[rPi] = {}
             filesDictionary[rPi]["Manual"], filesDictionary[rPi]["Auto"], filesDictionary[rPi]["Archive"] = files[0], files[1], files[2]
+        # ct.uploadFile("10.10.0.200", f"{workingDir}\8122022_10-6-3.mp4", auto)
 
         ###############################################
         ###### Dynamically adds pages for Pis and #####
         ###########       Pi grouping      ############
         ###############################################
+
+        ### Function to start slide show on Pi
+        def startSlideShow(ip):
+            def videoList():
+                
+                ct.slideShow()
+
+        def fileUpload(listBox, ip):
+            file = lambda: browseFiles(l=listBox)
+            ct.uploadFile(ip, file, f"/home/pi/ScreenPlayer/AutoUpload")
 
         ### Function that dynamically adds style classes to elements
         def addStyleClass(e, c ="", classType=None):
@@ -187,7 +198,7 @@ class MainWindow(QMainWindow):
             widget.insertItem(index, self.ui.mainWidget, QtGui.QIcon("./icons/chevron-down.svg") ,f"{name}")
             widget.setItemText(index, f"{name}")
             self.ui.widgetList.setObjectName(f"{indicator}{noSpace}List")
-            
+
         ### Function to add new pi grouping pages
         def addPiPage(name, rList):
 
@@ -270,7 +281,7 @@ class MainWindow(QMainWindow):
 
         ### Function to find/connect dynamically made opjects
         def dynamicElement(target, objectParent, elementType, command = None, page = None):
-            elifList = ["QWidget", "QListWidget", "QFrame"]
+            elifList = ["QWidget", "QListWidget", "QFrame", "QToolBox"]
             if elementType == "QPushButton":
                 target = objectParent.findChild(QPushButton, target)
                 if command == None:
@@ -313,6 +324,7 @@ class MainWindow(QMainWindow):
             self.ui.navFrame.setObjectName(f"{noSpace}NavFrame")
 
             self.ui.mainBodyFrame = QFrame()
+            self.ui.mainBodyFrame.setObjectName(f"{noSpace}MainBody")
 
             self.ui.layout.addWidget(self.ui.mainBodyFrame)
             self.ui.layout.addWidget(self.ui.navFrame)
@@ -341,6 +353,16 @@ class MainWindow(QMainWindow):
             self.ui.mainBodyLayout.addWidget(self.ui.bodyFrame)
             self.ui.mainBodyLayout.addWidget(self.ui.footerFrame)
 
+
+            self.ui.headerFrame.setObjectName(f"{noSpace}Header")
+            self.ui.bodyFrame.setObjectName(f"{noSpace}Body")
+            self.ui.footerFrame.setObjectName(f"{noSpace}Footer")
+
+            elementList.append(f"{noSpace}MainBody")
+            elementList.append(f"{noSpace}Header")
+            elementList.append(f"{noSpace}Body")
+            elementList.append(f"{noSpace}Footer")
+
             self.ui.headerLayout = QtWidgets.QHBoxLayout(self.ui.headerFrame)
             self.ui.header = QLabel(piName)
             self.ui.headerLayout.addWidget(self.ui.header)
@@ -351,20 +373,45 @@ class MainWindow(QMainWindow):
             addToolBoxItem(self.ui.toolBox, "Manual Upload", 0)
             addToolBoxItem(self.ui.toolBox, "Auto Upload", 1)
             addToolBoxItem(self.ui.toolBox, "Archive", 2)
+
+            manual = dynamicElement(f"ManualUploadList", self.ui.toolBox, "QListWidget")
+            auto = dynamicElement(f"AutoUploadList", self.ui.toolBox, "QListWidget")
+            archive = dynamicElement(f"ArchiveList", self.ui.toolBox, "QListWidget")
+
+            for directoryList in filesDictionary[piName]:
+                for item in filesDictionary[piName][directoryList]:
+                    if directoryList == "Manual":
+                        manual.addItem(item) 
+                    elif directoryList == "Auto":
+                        auto.addItem(item)
+                    else:
+                        archive.addItem(item)
+
+
             self.ui.bodyLayout.addWidget(self.ui.toolBox)
 
 
-            self.ui.uploadButton, self.ui.archiveButton = QPushButton("Upload Files"), QPushButton("Archive Files")
+            self.ui.uploadButton, self.ui.archiveButton, self.ui.slideShow = QPushButton("Upload Files"), QPushButton("Archive Files"), QPushButton("Start Slide Show")
+
+
             self.ui.footerLayout = QtWidgets.QHBoxLayout(self.ui.footerFrame)
             self.ui.footerLayout.addWidget(self.ui.uploadButton)
             self.ui.footerLayout.addWidget(self.ui.archiveButton)
+            self.ui.footerLayout.addWidget(self.ui.slideShow)
             
             self.ui.uploadButton.setObjectName(f"{noSpace}UploadButton")
             self.ui.archiveButton.setObjectName(f"{noSpace}ArchiveButton")
+            self.ui.slideShow.setObjectName(f"{noSpace}SlideShow")
+            
+            elementList.append(f"{noSpace}UploadButton")
+            elementList.append(f"{noSpace}ArchiveButton")
+            elementList.append(f"{noSpace}SlideShow")
+
 
             styleDictionary = {
                 self.ui.uploadButton: "button",
                 self.ui.archiveButton: "button",
+                self.ui.slideShow: "button",
                 self.ui.header: "fs-heading",
                 }
 
@@ -372,7 +419,7 @@ class MainWindow(QMainWindow):
             return self.ui.page, elementList
 
         ### Function to add buttons to the menus for each Pi/Pi grouping
-        def addMenuButtons(piList, widget, dictionary = None):
+        def addMenuButtons(piList, widget, allPis, dictionary = None):
             objectDictionary = {}
             if dictionary == None:
                 elementList = []
@@ -397,7 +444,7 @@ class MainWindow(QMainWindow):
                     objectDictionary[piName] = obj
 
                     findPage = dynamicElement(obj[0], self.ui.stackedWidget, "QWidget")
-                    connectButtons({self.ui.piButton: findPage}, "page")
+                    # connectButtons({self.ui.piButton: findPage}, "page")
 
             elements = {
                 "Pages": [],
@@ -436,11 +483,10 @@ class MainWindow(QMainWindow):
 
             addToolBoxItem(self.ui.dropMenu, f"{page} Pis", counter)
             element = dynamicElement(f"{page}PisList", self.ui.dropMenu, "QWidget")
-            addMenuButtons(piList, element)
+            addMenuButtons(piList, element, pi)
         
         element = dynamicElement("AllPisList", self.ui.dropMenu, "QWidget")
-        elementDictionary = addMenuButtons(pageList, element, dictionary = pagePis)
-
+        elementDictionary = addMenuButtons(pageList, element, pi, dictionary = pagePis)
         ###################################################
         ######### Formatting Lists and Adding Data ########
         ###################################################
@@ -452,6 +498,7 @@ class MainWindow(QMainWindow):
         # Populates the list widgets with the files on each Pi
         currentGroup, piCounter = piGroups[0], 0
         for rPi in filesDictionary:
+            noSpace = rPi.replace(" ", "")
             # Finds the correct grouping of Pis in the element dictionary
             if piCounter >= (len(elementDictionary[currentGroup])-3)/3:
                 index = piGroups.index(currentGroup)
@@ -459,17 +506,28 @@ class MainWindow(QMainWindow):
                     currentGroup = piGroups[index+1]
                     piCounter = 0
                 else: break
+
             # Finds the dynamically created elements and populates the file list widgets
             for directoryList in filesDictionary[rPi]:
                 listIndex = (piCounter+1)*3
+
                 page = dynamicElement(elementDictionary[currentGroup][0], self.ui.stackedWidget, "QWidget")
                 mainFrame = dynamicElement(elementDictionary[currentGroup][listIndex+2], page, "QFrame")
                 bodyFrame = dynamicElement(elementDictionary[currentGroup][listIndex+1], mainFrame, "QFrame")
+                footerFrame = dynamicElement(f"{noSpace}Footer", mainFrame, "QFrame")
+
+
                 toolBox = dynamicElement(elementDictionary[currentGroup][listIndex], bodyFrame, "QFrame")
+                
+                # archiveButton = dynamicElement(f"{noSpace}ArchiveButton", footerFrame, "QPushButton")
+                # slideShowButton = dynamicElement(f"{noSpace}SlideShow", footerFrame, "QPushButton")
+
                 if directoryList == "Manual":
                     listBox = dynamicElement(f"ManualUploadList", toolBox , "QListWidget")
                 elif directoryList == "Auto":
                     listBox = dynamicElement(f"AutoUploadList", toolBox, "QListWidget")
+                    # uploadButton = dynamicElement(f"{noSpace}UploadButton", footerFrame, "QPushButton", command=fileUpload(listBox, pi[rPi]["ip"]))
+
                 elif directoryList == "Archive":
                     listBox = dynamicElement(f"ArchiveList", toolBox, "QListWidget")
                 for item in filesDictionary[rPi][directoryList]:
@@ -513,6 +571,7 @@ class MainWindow(QMainWindow):
         self.ui.headerframe.mouseMoveEvent = moveWindow
         
         self.show()
+
 
     ### Function that animates the side menu 
     def slideLeftMenu(self):
@@ -585,3 +644,4 @@ if __name__ == "__main__":
 
 
     #TODO: open live streams and web addresses
+    #TODO: allow users to name videos

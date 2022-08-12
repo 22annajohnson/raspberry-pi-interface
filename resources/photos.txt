@@ -1,0 +1,7 @@
+file 'C:/Users/22ann/Documents/RPi_Interface/images/test2.jpeg'
+duration 3
+file 'C:/Users/22ann/Documents/RPi_Interface/images/test1.jpg'
+duration 3
+file 'C:/Users/22ann/Documents/RPi_Interface/images/test3.jpg'
+duration 3
+file 'C:/Users/22ann/Documents/RPi_Interface/images/test3.jpg'
