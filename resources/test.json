@@ -1,0 +1,47 @@
+{
+    "Tour 1": {
+        "ip": "10.10.0.200",
+        "username": "pi",
+        "password": "duck236"
+    },
+    "Tour 2": {
+        "ip": "10.10.0.201",
+        "username": "pi",
+        "password": "duck236"
+    },
+    "Tour 3": {
+        "ip": "10.10.0.202",
+        "username": "pi",
+        "password": "duck236"
+    },
+    "Tour 4": {
+        "ip": "10.10.0.203",
+        "username": "pi",
+        "password": "duck236"
+    },
+    "Tour 5": {
+        "ip": "10.10.0.204",
+        "username": "pi",
+        "password": "duck236"
+    },
+    "Tour 6": {
+        "ip": "10.10.0.205",
+        "username": "pi",
+        "password": "duck236"
+    },
+    "Space Room 1": {
+        "ip": "10.10.0.208",
+        "username": "pi",
+        "password": "duck236"
+    },
+    "Space Room 2": {
+        "ip": "10.10.0.207",
+        "username": "pi",
+        "password": "duck236"
+    },
+    "Space Room 3": {
+        "ip": "10.10.0.209",
+        "username": "pi",
+        "password": "duck236"
+    }
+}

@@ -1,7 +1,7 @@
-file 'C:/Users/22ann/Documents/RPi_Interface/images/test2.jpeg'
-duration 3
-file 'C:/Users/22ann/Documents/RPi_Interface/images/test1.jpg'
-duration 3
-file 'C:/Users/22ann/Documents/RPi_Interface/images/test3.jpg'
-duration 3
-file 'C:/Users/22ann/Documents/RPi_Interface/images/test3.jpg'
+file 'C:\Users\22ann\Documents\RPi_Interface/downloaded/img001.png'
+duration 10
+file 'C:\Users\22ann\Documents\RPi_Interface/downloaded/img002.png'
+duration 10
+file 'C:\Users\22ann\Documents\RPi_Interface/downloaded/test3.jpg'
+duration 10
+file 'C:\Users\22ann\Documents\RPi_Interface/downloaded/test3.jpg'
