@@ -28,5 +28,20 @@
         "ip": "10.10.0.205",
         "username": "pi",
         "password": "duck236"
+    },
+    "Space Room 1": {
+        "ip": "10.10.0.208",
+        "username": "pi",
+        "password": "duck236"
+    },
+    "Space Room 2": {
+        "ip": "10.10.0.207",
+        "username": "pi",
+        "password": "duck236"
+    },
+    "Space Room 3": {
+        "ip": "10.10.0.209",
+        "username": "pi",
+        "password": "duck236"
     }
 }

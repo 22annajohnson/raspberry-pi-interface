@@ -30,10 +30,12 @@ def compile(p, d):
     photos(p, d)
     
 
-    os.system(f"""ffmpeg -loglevel panic -f concat -safe 0 -i "{current}\\resources\\photos.txt" -vf "crop=trunc(iw/2)*2:trunc(ih/2)*2" -vsync vfr -pix_fmt yuv420p "{current}\\videos\\temp.mp4""")
-
-    os.system(f"""ffmpeg -loglevel panic -i "{current}\\videos\\temp.mp4" -filter:v fps=fps=60 {current}\\videos\\{time}.mp4""")
+    # os.system(f"""ffmpeg  -f concat -safe 0 -i "{current}\\resources\\photos.txt" -vsync vfr -filter:v fps=fps=60 -pix_fmt yuv420p "{current}\\videos\\{time}.mp4""")
+    os.system(f"""ffmpeg -loglevel panic -f concat -safe 0 -i "{current}\\resources\\photos.txt" -vf "crop=trunc(iw/2)*2:trunc(ih/2)*2" -vsync vfr -pix_fmt yuv420p -vcodec jpeg "{current}\\videos\\temp.mp4""")
+    print("here")
+    os.system(f"""ffmpeg  -i "{current}\\videos\\temp.mp4" -filter:v fps=fps=60 {current}\\videos\\{time}.mp4""")
     os.remove(f"{current}\\videos\\temp.mp4")
     # os.system(f"""ffmpeg -f concat -safe 0 -i "{current}\\resources\\photos.txt" -vf "crop=trunc(iw/2)*2:trunc(ih/2)*2, fps=60, format=yuv420p" -vsync vfr "{time}.mp4""")
-
-# compile(p, d)
+    fileName = f"{current}\\videos\\{time}.mp4"
+    return fileName
+# compile(p="", d="")

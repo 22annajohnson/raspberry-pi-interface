@@ -277,6 +277,7 @@ class MainWindow(QMainWindow):
         ### Function to start slide show on Pi
         def startSlideShow(pi):
             slideShowButton = self.sender()
+            
             piName = slideShowButton.objectName().replace("SlideShow", "")
             addSpace = ""
             addedSpace = False
@@ -292,7 +293,13 @@ class MainWindow(QMainWindow):
                     addSpace = f"{addSpace}{letter}"
             ip = pi[addSpace]["ip"]
 
+            if slideShowButton.text() == "Stop Slide Show":
+                ct.slideShow(ip, option="kill")
+                slideShowButton.setText("Start Slide Show")
+                return
+
             ct.slideShow(ip)
+            slideShowButton.setText("Stop Slide Show")
 
         ### Function that archives selected files
         def archiveFiles(pi):
@@ -695,7 +702,7 @@ class MainWindow(QMainWindow):
 
     ###Function to open a file explorer window
     def browseFiles(self, t = None, duration = "", l = None, ip = None):
-        fname = QFileDialog.getOpenFileName(self, "Choose a File", f"{workingDir}")
+        fname = QFileDialog.getOpenFileName(self, "Choose a File", f"{workingDir}", "Image files (*.jpg *.jpeg)")
         path, fileName = fname[0], fname[0].split("/")[-1]
         if t != None:
             rows = t.rowCount()
